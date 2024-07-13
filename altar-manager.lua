@@ -49,7 +49,7 @@ while true do
     local madeSlate = false
     if altar.getItemDetail(1) == nil then
         for index, slate in pairs(slates) do
-            outputSlot = chest.getIte       mDetail(slate.slotNr)
+            outputSlot = chest.getItemDetail(slate.slotNr)
 
             local needMoreSlate = outputSlot == nil or outputSlot.count < slate.amount
             local AlterEssence = altar.tanks()[1].amount
