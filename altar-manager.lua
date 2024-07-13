@@ -5,11 +5,11 @@ local chest = peripheral.wrap(chestName)
 local altar = peripheral.wrap(altarName)
 
 local slates = {
-    { id = 'AWWayofTime:blankSlate', amount = 16, essence = 1000, input = 'forge:stone', slotNr = 20 },
-    { id = 'AWWayofTime:reinforcedSlate', amount = 16, essence = 2000, input = 'AWWayofTime:blankSlate', slotNr = 21},
-    { id = 'AWWayofTime:imbuedSlate', amount  =  16, essence = 5000, input = 'AWWayofTime:reinforcedSlate', slotNr= 22 },
-    { id = 'AWWayofTime:demonicSlate', amount  =  16, essence = 15000, input = 'AWWayofTime:imbuedSlate', slotNr = 23 },
-    { id = 'AWWayofTime:bloodMagicBaseItems:27', amount = 16, essence = 30000, input = 'AWWayofTime:demonicSlate', slotNr = 24 }
+    { id = 'bloodmagic:blankslate', amount = 16, essence = 1000, input = 'forge:stone', slotNr = 20 },
+    { id = 'bloodmagic:reinforcedslate', amount = 16, essence = 2000, input = 'bloodmagic:blankslate', slotNr = 21},
+    { id = 'bloodmagic:imbuedslate', amount  =  16, essence = 5000, input = 'bloodmagic:reinforcedslate', slotNr= 22 },
+    { id = 'bloodmagic:demonicslate', amount  =  16, essence = 15000, input = 'bloodmagic:imbuedslate', slotNr = 23 },
+    { id = 'bloodmagic:etherealslate', amount = 16, essence = 30000, input = 'bloodmagic:demonicslate', slotNr = 24 }
 }
 
 local function slotHasTag(invSlot, itemTag)
@@ -34,7 +34,7 @@ local function findSlotWithTag(itemTag, inv)
             return slotNr
         end
     end
-end
+end 
 
 local function makeSlate (output, input, slotNr)
     local componentSlotNr = findSlotWithTag(input, chest)
