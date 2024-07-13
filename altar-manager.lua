@@ -1,5 +1,5 @@
-local chest = peripheral.wrap("top")
-local altar = peripheral.wrap("left")
+local chestName = "top"
+local altarName = "left"
 
 local slates = {
     { id = 'AWWayofTime:blankSlate', amount = 16, essence = 1000, input = 'forge:stone', slotNr = 20 },
@@ -30,12 +30,15 @@ end
 
 local function makeSlate (output, input, slotNr)
     local componentSlotNr = findSlotWith(input, chest)
-    chest.pushItem(altar, componentSlotNr, 1, 1)
+    chest.pushItem(altarName, componentSlotNr, 1, 1)
     while altar.getItemDetail(1).name ~= output do
         sleep(0.4)
     end
-    chest.pullItem(altar, 1, 1, slotNr)
+    chest.pullItem(altarName, 1, 1, slotNr)
 end
+
+local chest = peripheral.wrap(chestName)
+local altar = peripheral.wrap(altarName)
 
 while true do
     local madeSlate = false
@@ -43,7 +46,7 @@ while true do
         outputSlot = chest.getItemDetail(slate.slotNr)
 
         local needMoreSlate = outputSlot == nil or outputSlot.count < slate.amount
-        local AlterEssence = altar.tank().amount
+        local AlterEssence = altar.tanks()[1].amount
 
         if needMoreSlate and slate.essence < AlterEssence then
             makeSlate(slate.id, slate.input, slate.slotNr)
