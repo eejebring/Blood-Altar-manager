@@ -57,7 +57,7 @@ while true do
             local needMoreSlate = outputSlot == nil or outputSlot.count < slate.amount
             local bloodTank = altar.tanks()
             local altarEssence = 0
-            if bloodTank then
+            if #bloodTank ~= 0 then
                 altarEssence = bloodTank[1].amount
             else
 
