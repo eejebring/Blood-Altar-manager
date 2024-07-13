@@ -39,18 +39,18 @@ end
 
 while true do
     local madeSlate = false
-    for slateId, amount, neededEssense, input, slotNr in slates do
-        outputSlot = chest.getItemDetail(slotNr)
+    for index, slate in pairs(slates) do
+        outputSlot = chest.getItemDetail(slate.slotNr)
 
-        local needMoreSlate = outputSlot == nil or outputSlot.count < amount
+        local needMoreSlate = outputSlot == nil or outputSlot.count < slate.amount
         local AlterEssence = altar.tank().amount
 
-        if needMoreSlate and neededEssense < AlterEssence then
-            makeSlate(slateId, input, slotNr)
+        if needMoreSlate and slate.essence < AlterEssence then
+            makeSlate(slate.id, slate.input, slate.slotNr)
             madeSlate = true
             break
         end
-    end
+    end     
     if not madeSlate then
         sleep(5)
     end
