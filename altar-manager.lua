@@ -5,11 +5,11 @@ local chest = peripheral.wrap(chestName)
 local altar = peripheral.wrap(altarName)
 
 local slates = {
-    { id = 'bloodmagic:blankslate', amount = 16, essence = 1000, input = 'forge:stone', slotNr = 20 },
-    { id = 'bloodmagic:reinforcedslate', amount = 16, essence = 2000, input = 'bloodmagic:blankslate', slotNr = 21},
-    { id = 'bloodmagic:imbuedslate', amount  =  16, essence = 5000, input = 'bloodmagic:reinforcedslate', slotNr= 22 },
-    { id = 'bloodmagic:demonicslate', amount  =  16, essence = 15000, input = 'bloodmagic:imbuedslate', slotNr = 23 },
-    { id = 'bloodmagic:etherealslate', amount = 16, essence = 30000, input = 'bloodmagic:demonicslate', slotNr = 24 }
+    { id = 'bloodmagic:blankslate', amount = 16, essence = 1000, input = 'forge:stone', slotNr = 19 },
+    { id = 'bloodmagic:reinforcedslate', amount = 16, essence = 2000, input = 'bloodmagic:blankslate', slotNr = 20},
+    { id = 'bloodmagic:imbuedslate', amount  =  16, essence = 5000, input = 'bloodmagic:reinforcedslate', slotNr= 21 },
+    { id = 'bloodmagic:demonicslate', amount  =  16, essence = 15000, input = 'bloodmagic:imbuedslate', slotNr = 22 },
+    { id = 'bloodmagic:etherealslate', amount = 16, essence = 30000, input = 'bloodmagic:demonicslate', slotNr = 23 }
 }
 
 local function slotHasTag(invSlot, itemTag)
@@ -42,14 +42,14 @@ local function makeSlate (output, input, slotNr)
     while altar.getItemDetail(1).name ~= output do
         sleep(0.4)
     end
-    chest.pullItems(altarName        , 1, 1, slotNr)
+    chest.pullItems(altarName, 1, 1, slotNr)
 end
 
-while true do
+while true do       
     local madeSlate = false
     if altar.getItemDetail(1) == nil then
         for index, slate in pairs(slates) do
-            outputSlot = chest.getItemDetail(slate.slotNr)
+            outputSlot = chest.getIte       mDetail(slate.slotNr)
 
             local needMoreSlate = outputSlot == nil or outputSlot.count < slate.amount
             local AlterEssence = altar.tanks()[1].amount
