@@ -20,6 +20,9 @@ local function slotHasTag(invSlot, itemTag)
     elseif itemTag == nil then
         return false
     end
+    if invSlot.name == itemTag then
+        return true
+    end
     for tagId, state in pairs(invSlot.tags) do
         if state and tagId == itemTag then
             return true
