@@ -45,23 +45,28 @@ local function makeSlate (output, input, slotNr)
     chest.pullItems(altarName, 1, 1, slotNr)
 end
 
-while true do       
+while true do
     local madeSlate = false
     if altar.getItemDetail(1) == nil then
         for index, slate in pairs(slates) do
             outputSlot = chest.getItemDetail(slate.slotNr)
 
             local needMoreSlate = outputSlot == nil or outputSlot.count < slate.amount
-            local AlterEssence = altar.tanks()[1].amount
+            local bloodTank = altar.tanks()
+            local altarEssence = 0
+            if bloodTank then
+                altarEssence = bloodTank[1].amount
+            else
 
-            if needMoreSlate and slate.essence < AlterEssence then
-                makeSlate(slate.id, slate.input, slate.slotNr)
-                madeSlate = true
-                break
+                if needMoreSlate and slate.essence < altarEssence then
+                    makeSlate(slate.id, slate.input, slate.slotNr)
+                    madeSlate = true
+                    break
+                end
             end
         end
-    end
-    if not madeSlate then
-        sleep(5)
+        if not madeSlate then
+            sleep(5)
+        end
     end
 end
