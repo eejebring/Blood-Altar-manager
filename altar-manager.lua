@@ -59,13 +59,11 @@ while true do
             local altarEssence = 0
             if #bloodTank ~= 0 then
                 altarEssence = bloodTank[1].amount
-            else
-
-                if needMoreSlate and slate.essence < altarEssence then
-                    makeSlate(slate.id, slate.input, slate.slotNr)
-                    madeSlate = true
-                    break
-                end
+            end
+            if needMoreSlate and slate.essence < altarEssence then
+                makeSlate(slate.id, slate.input, slate.slotNr)
+                madeSlate = true
+                break
             end
         end
         if not madeSlate then
