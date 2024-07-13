@@ -1,6 +1,9 @@
 local chestName = "top"
 local altarName = "left"
 
+local chest = peripheral.wrap(chestName)
+local altar = peripheral.wrap(altarName)
+
 local slates = {
     { id = 'AWWayofTime:blankSlate', amount = 16, essence = 1000, input = 'forge:stone', slotNr = 20 },
     { id = 'AWWayofTime:reinforcedSlate', amount = 16, essence = 2000, input = 'AWWayofTime:blankSlate', slotNr = 21},
@@ -34,11 +37,8 @@ local function makeSlate (output, input, slotNr)
     while altar.getItemDetail(1).name ~= output do
         sleep(0.4)
     end
-    chest.pullItem(altarName, 1, 1, slotNr)
+    chest.pullItem(altarName        , 1, 1, slotNr)
 end
-
-local chest = peripheral.wrap(chestName)
-local altar = peripheral.wrap(altarName)
 
 while true do
     local madeSlate = false
