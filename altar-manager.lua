@@ -30,7 +30,7 @@ end
 
 local function findSlotWithTag(itemTag, inv)
     for slotNr, slot in pairs(inv.list()) do
-        if slotHasTag(slot, itemTag) then
+        if slotHasTag(inv.getItemDetail(slotNr), itemTag) then
             return slotNr
         end
     end
