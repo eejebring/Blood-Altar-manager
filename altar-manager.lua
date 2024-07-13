@@ -12,32 +12,37 @@ local slates = {
     { id = 'AWWayofTime:bloodMagicBaseItems:27', amount = 16, essence = 30000, input = 'AWWayofTime:demonicSlate', slotNr = 24 }
 }
 
-local function slotHasItem(invSlot, itemName)
-    if invSlot == nil and itemName == nil then
+local function slotHasTag(invSlot, itemTag)
+    if invSlot == nil and itemTag == nil then
         return true
     elseif invSlot == nil then
         return false
-    elseif itemName == nil then
+    elseif itemTag == nil then
         return false
     end
-    return invSlot.name == itemName
+    for tagId, state in pairs(invSlot.tags) do
+        if state and tagId == itemTag then
+            return true
+        end
+    end
+    return false
 end
 
-local function findSlotWith(itemName, inv)
+local function findSlotWithTag(itemTag, inv)
     for slotNr, slot in pairs(inv.list()) do
-        if slotHasItem(slot, itemName) then
+        if slotHasTag(slot, itemTag) then
             return slotNr
         end
     end
 end
 
 local function makeSlate (output, input, slotNr)
-    local componentSlotNr = findSlotWith(input, chest)
-    chest.pushItem(altarName, componentSlotNr, 1, 1)
+    local componentSlotNr = findSlotWithTag(input, chest)
+    chest.pushItems(altarName, componentSlotNr, 1, 1)
     while altar.getItemDetail(1).name ~= output do
         sleep(0.4)
     end
-    chest.pullItem(altarName        , 1, 1, slotNr)
+    chest.pullItems(altarName        , 1, 1, slotNr)
 end
 
 while true do
