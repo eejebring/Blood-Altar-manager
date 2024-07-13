@@ -38,7 +38,7 @@ end
 
 local function makeSlate (output, input, slotNr)
     local componentSlotNr = findSlotWithTag(input, chest)
-    chest.pushItems(altarName, componentSlotNr, 1, 1)
+    chest.pushItems(altarName, componentSlotNr, 1, 1)   
     while altar.getItemDetail(1).name ~= output do
         sleep(0.4)
     end
@@ -47,18 +47,20 @@ end
 
 while true do
     local madeSlate = false
-    for index, slate in pairs(slates) do
-        outputSlot = chest.getItemDetail(slate.slotNr)
+    if altar.getItemDetail(1) == nil then
+        for index, slate in pairs(slates) do
+            outputSlot = chest.getItemDetail(slate.slotNr)
 
-        local needMoreSlate = outputSlot == nil or outputSlot.count < slate.amount
-        local AlterEssence = altar.tanks()[1].amount
+            local needMoreSlate = outputSlot == nil or outputSlot.count < slate.amount
+            local AlterEssence = altar.tanks()[1].amount
 
-        if needMoreSlate and slate.essence < AlterEssence then
-            makeSlate(slate.id, slate.input, slate.slotNr)
-            madeSlate = true
-            break
+            if needMoreSlate and slate.essence < AlterEssence then
+                makeSlate(slate.id, slate.input, slate.slotNr)
+                madeSlate = true
+                break
+            end
         end
-    end     
+    end
     if not madeSlate then
         sleep(5)
     end
